@@ -2,12 +2,18 @@
 
 
 #include "Player_Character.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 // Sets default values
 APlayer_Character::APlayer_Character()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	WalkSpeed = 300.0f;
+	RunSpeed = 500.0f;
+
+	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
 
 	//create camera boon
 	CameraBoon = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoon"));
@@ -46,5 +52,17 @@ void APlayer_Character::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	//Bind action for running
+	PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &APlayer_Character::StartRun);
+	PlayerInputComponent->BindAction("Sprint", IE_Released, this, &APlayer_Character::EndRun);
 }
 
+void APlayer_Character::StartRun()
+{
+	GetCharacterMovement()->MaxWalkSpeed = RunSpeed;
+}
+
+void APlayer_Character::EndRun()
+{
+	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
+}
