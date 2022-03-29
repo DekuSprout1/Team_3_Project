@@ -11,7 +11,7 @@ APlayer_Character::APlayer_Character()
 	PrimaryActorTick.bCanEverTick = true;
 
 	WalkSpeed = 300.0f;
-	RunSpeed = 500.0f;
+	RunSpeed = 600.0f;
 
 	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
 
