@@ -28,6 +28,16 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	
+	/**Start and end the run when the shift key is held and released*/
+	void StartRun();
+	void EndRun();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
+		float WalkSpeed;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
+		float RunSpeed;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
 		class USpringArmComponent* CameraBoon;
 
