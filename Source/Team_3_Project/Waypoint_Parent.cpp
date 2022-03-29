@@ -3,3 +3,7 @@
 
 #include "Waypoint_Parent.h"
 
+int AWaypoint_Parent::GetWaypointOrder()
+{
+	return WaypointOrder;
+}

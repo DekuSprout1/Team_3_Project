@@ -13,5 +13,13 @@ UCLASS()
 class TEAM_3_PROJECT_API AWaypoint_Parent : public AStaticMeshActor
 {
 	GENERATED_BODY()
-	
+
+public:
+
+	UFUNCTION(BlueprintCallable)
+	int GetWaypointOrder();
+
+private:
+		UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"))
+		int WaypointOrder;
 };
