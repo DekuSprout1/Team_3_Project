@@ -6,21 +6,29 @@
 #include "GameFramework/Character.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "Player_Character.generated.h"
 
 UCLASS()
 class TEAM_3_PROJECT_API APlayer_Character : public ACharacter
 {
 	GENERATED_BODY()
-
+    
 public:
 	// Sets default values for this character's properties
 	APlayer_Character();
-
+    
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Character)
+    int walkSpeed;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Character)
+    int sprintSpeed;
+    
+    UCharacterMovementComponent*CharacterMovement = GetCharacterMovement();
+    
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
+    
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -33,4 +41,8 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
 		class UCameraComponent* FollowCamera;
+    
+    void StartSprint();
+    
+    void EndSprint();
 };
