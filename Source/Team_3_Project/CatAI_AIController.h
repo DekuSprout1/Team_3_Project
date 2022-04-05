@@ -14,4 +14,5 @@ class TEAM_3_PROJECT_API ACatAI_AIController : public AAIController
 {
 	GENERATED_BODY()
 	
+    void OnMoveCompleted(FAIRequestID RequestID, const FPathFollowingResult& Result) override;
 };
