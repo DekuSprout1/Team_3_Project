@@ -14,4 +14,11 @@ class TEAM_3_PROJECT_API ACatAI_Waypoint : public AStaticMeshActor
 {
 	GENERATED_BODY()
 	
+public:
+    
+    int GetWaypointOrder();
+        
+private:
+    UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"))
+    int WaypointOrder;
 };
