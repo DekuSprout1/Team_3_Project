@@ -55,8 +55,8 @@ void ACatAI::MoveToWaypoints()
                     {
                         CatAIController->MoveToActor(WaypointItr, 2.f, false);
                         //this is where i would have it stop between movements
-                        CurrentWaypoint++;
-                        break;
+                        
+                        
                     }
                 }
             }

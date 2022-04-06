@@ -28,9 +28,11 @@ public:
 
     void MoveToWaypoints();
     
-private:
     UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"))
     int CurrentWaypoint;
     
     TArray<AActor*> Waypoints;
+    
+private:
+    
 };
