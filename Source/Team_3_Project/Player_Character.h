@@ -22,6 +22,14 @@ public:
     int walkSpeed;
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Character)
     int sprintSpeed;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Character)
+    int crouchSpeed;
+    
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Character)
+    float crouchScale;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Character)
+    FVector standScale;
+    
     
     UCharacterMovementComponent*CharacterMovement = GetCharacterMovement();
     
@@ -44,5 +52,11 @@ public:
     
     void StartSprint();
     
-    void EndSprint();
+    void StartWalkSpeed();
+    
+    void StartCrouch();
+    
+    void EndCrouch();
+    
+    
 };
