@@ -13,6 +13,12 @@ APlayer_Character::APlayer_Character()
     
     walkSpeed = 300;
     sprintSpeed = 600;
+    crouchSpeed = 200;
+    
+    crouchScale = 0.01f;
+    standScale = GetActorScale3D();
+    
+    
 
 	//create camera boon
 	CameraBoon = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoon"));
@@ -52,7 +58,11 @@ void APlayer_Character::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
     
     InputComponent->BindAction("Sprint", IE_Pressed, this, &APlayer_Character::StartSprint);
-    InputComponent->BindAction("Sprint", IE_Released, this, &APlayer_Character::EndSprint);
+    InputComponent->BindAction("Sprint", IE_Released, this, &APlayer_Character::StartWalkSpeed);
+    
+    InputComponent->BindAction("Crouch", IE_Pressed, this, &APlayer_Character::StartCrouch);
+    InputComponent->BindAction("Crouch", IE_Released, this, &APlayer_Character::EndCrouch);
+    
 }
 
 void APlayer_Character::StartSprint()
@@ -60,7 +70,25 @@ void APlayer_Character::StartSprint()
     CharacterMovement->MaxWalkSpeed = sprintSpeed;
 }
  
-void APlayer_Character::EndSprint()
+void APlayer_Character::StartWalkSpeed()
 {
     CharacterMovement->MaxWalkSpeed = walkSpeed;
+    
+}
+
+void APlayer_Character::StartCrouch()
+{
+    CharacterMovement->MaxWalkSpeed = crouchSpeed;
+    //changing scale down
+    FVector currentScale = GetActorScale3D();
+    FVector newScale = currentScale * (0.7f);
+    
+    SetActorScale3D(newScale);
+}
+
+void APlayer_Character::EndCrouch()
+{
+    CharacterMovement->MaxWalkSpeed = walkSpeed;
+    
+    SetActorScale3D(standScale);
 }
