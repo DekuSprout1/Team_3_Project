@@ -2,7 +2,8 @@
 
 
 #include "Player_Character.h"
-
+#include "Kismet/GameplayStatics.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 
 // Sets default values
@@ -18,8 +19,8 @@ APlayer_Character::APlayer_Character()
     crouchScale = 0.01f;
     standScale = GetActorScale3D();
     
+    drawingTrajectory = false;
     
-
 	//create camera boon
 	CameraBoon = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoon"));
 	CameraBoon->SetupAttachment(RootComponent);
@@ -50,6 +51,7 @@ void APlayer_Character::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+    FVector myCharacter = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation();
 }
 
 // Called to bind functionality to input
@@ -62,6 +64,9 @@ void APlayer_Character::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
     
     InputComponent->BindAction("Crouch", IE_Pressed, this, &APlayer_Character::StartCrouch);
     InputComponent->BindAction("Crouch", IE_Released, this, &APlayer_Character::EndCrouch);
+    
+    InputComponent->BindAction("Slingshot", IE_Pressed, this, &APlayer_Character::DrawTrajectory);
+    InputComponent->BindAction("Slingshot", IE_Released, this, &APlayer_Character::DrawTrajectory);
     
 }
 
@@ -92,3 +97,23 @@ void APlayer_Character::EndCrouch()
     
     SetActorScale3D(standScale);
 }
+
+void APlayer_Character::DrawTrajectory()
+{
+    if(drawingTrajectory)
+    {
+        for(int i = 0; i< 5; i++)
+        {
+            this->GetLocation();
+        }
+    }
+}
+
+FVector APlayer_Character::GetLocation()
+{
+    gravity = CharacterMovement->GetGravityZ();
+    
+    // location = u*t(0, 0, (0.5(gravity, t, t)));
+    
+    return(location);
+};
