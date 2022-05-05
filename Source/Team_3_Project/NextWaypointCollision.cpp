@@ -37,7 +37,8 @@ void ANextWaypointCollision::OnOverlapBegin(UPrimitiveComponent* OverlappedCompo
         APlayer_Character* Char = Cast<APlayer_Character>(OtherActor);
         if (Char)
         {
-                
+                Cat-> CurrentWaypoint++;
+                Cat-> MoveToWaypoints();
                 UE_LOG(LogTemp, Warning, TEXT("Next waypoint ++"));
                 Destroy();
 

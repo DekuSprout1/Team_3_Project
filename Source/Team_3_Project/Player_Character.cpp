@@ -112,8 +112,9 @@ void APlayer_Character::DrawTrajectory()
 FVector APlayer_Character::GetLocation()
 {
     gravity = CharacterMovement->GetGravityZ();
+    tt = t*t;
     
-    // location = u*t(0, 0, (0.5(gravity, t, t)));
+    location = (u*t)+(0, 0 ,(0.5 * tt * gravity));
     
     return(location);
 };

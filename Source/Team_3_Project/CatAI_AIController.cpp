@@ -12,6 +12,6 @@
     
     if(CatAI)
     {
-        CatAI->MoveToWaypoints();
+        // CatAI->MoveToWaypoints();
     }
 }

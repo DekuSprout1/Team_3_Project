@@ -53,8 +53,8 @@ void ACatAI::MoveToWaypoints()
                 {
                     if(WaypointItr->GetWaypointOrder()==CurrentWaypoint)
                     {
-                        CatAIController->MoveToActor(WaypointItr, 2.f, false);
-                        CurrentWaypoint++;
+                       CatAIController->MoveToActor(WaypointItr, 2.f, false);
+                       // CurrentWaypoint++;
                         break;
                         
                     }

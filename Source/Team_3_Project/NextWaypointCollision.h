@@ -18,6 +18,9 @@ public:
     UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Particle Collision")
         class UBoxComponent* CollisionVolume;
     
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CatAI")
+    class ACatAI* Cat;
+    
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

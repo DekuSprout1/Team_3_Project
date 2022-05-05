@@ -42,6 +42,9 @@ public:
     float t;
     
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterProjectile)
+    float tt;
+    
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterProjectile)
     FVector u;
     
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterProjectile)
