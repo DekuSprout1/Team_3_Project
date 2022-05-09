@@ -3,6 +3,7 @@
 
 #include "Player_Character.h"
 #include "Kismet/GameplayStatics.h"
+#include "Engine/World.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
 
@@ -43,7 +44,7 @@ APlayer_Character::APlayer_Character()
 void APlayer_Character::BeginPlay()
 {
 	Super::BeginPlay();
-	
+    
 }
 
 // Called every frame
@@ -51,7 +52,7 @@ void APlayer_Character::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-    FVector myCharacter = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation();
+    myCharacter = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation();
 }
 
 // Called to bind functionality to input
@@ -102,10 +103,19 @@ void APlayer_Character::DrawTrajectory()
 {
     if(drawingTrajectory)
     {
-        for(int i = 0; i< 5; i++)
+        for(int i = 0; i< 1; i++)
         {
+            u = forwardVector;
+            t = i*0.2;
             this->GetLocation();
+            LineTraceSingleByChannel();
         }
+        FTimerHandle TimerHandle;
+        GetWorld()->GetTimerManager().SetTimer(TimerHandle, [&]()
+        {
+            UE_LOG(LogTemp, Warning, TEXT("Three second delay"))
+        }, 3, false);
+        DrawTrajectory();
     }
 }
 
@@ -114,7 +124,7 @@ FVector APlayer_Character::GetLocation()
     gravity = CharacterMovement->GetGravityZ();
     tt = t*t;
     
-    location = (u*t)+(0, 0 ,(0.5 * tt * gravity));
+    location = (u*t)+(0, 0 ,(0.5 * tt * gravity), myCharacter);
     
     return(location);
 };
