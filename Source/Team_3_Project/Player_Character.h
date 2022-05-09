@@ -50,6 +50,12 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterProjectile)
     float gravity;
     
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterProjectile)
+    FVector forwardVector;
+    
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterProjectile)
+    FVector myCharacter;
+    
     UCharacterMovementComponent*CharacterMovement = GetCharacterMovement();
     
 protected:
