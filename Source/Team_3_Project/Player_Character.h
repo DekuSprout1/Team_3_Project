@@ -30,32 +30,6 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Character)
     FVector standScale;
     
-    //throwing stuff
-    
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterProjectile)
-    bool drawingTrajectory;
-    
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterProjectile)
-    FVector location;
-    
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterProjectile)
-    float t;
-    
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterProjectile)
-    float tt;
-    
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterProjectile)
-    FVector u;
-    
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterProjectile)
-    float gravity;
-    
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterProjectile)
-    FVector forwardVector;
-    
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterProjectile)
-    FVector myCharacter;
-    
     UCharacterMovementComponent*CharacterMovement = GetCharacterMovement();
     
 protected:
@@ -82,11 +56,5 @@ public:
     void StartCrouch();
     
     void EndCrouch();
-    
-    void DrawTrajectory();
-    
-    void StopTrajectory();
-    
-    FVector GetLocation();
     
 };

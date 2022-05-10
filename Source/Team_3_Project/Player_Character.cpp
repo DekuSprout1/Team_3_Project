@@ -5,6 +5,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Engine/World.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "DrawDebugHelpers.h"
 
 
 // Sets default values
@@ -19,8 +20,6 @@ APlayer_Character::APlayer_Character()
     
     crouchScale = 0.01f;
     standScale = GetActorScale3D();
-    
-    drawingTrajectory = false;
     
 	//create camera boon
 	CameraBoon = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoon"));
@@ -51,8 +50,6 @@ void APlayer_Character::BeginPlay()
 void APlayer_Character::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-    myCharacter = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation();
 }
 
 // Called to bind functionality to input
@@ -66,8 +63,6 @@ void APlayer_Character::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
     InputComponent->BindAction("Crouch", IE_Pressed, this, &APlayer_Character::StartCrouch);
     InputComponent->BindAction("Crouch", IE_Released, this, &APlayer_Character::EndCrouch);
     
-    InputComponent->BindAction("Slingshot", IE_Pressed, this, &APlayer_Character::DrawTrajectory);
-    InputComponent->BindAction("Slingshot", IE_Released, this, &APlayer_Character::DrawTrajectory);
     
 }
 
@@ -99,32 +94,3 @@ void APlayer_Character::EndCrouch()
     SetActorScale3D(standScale);
 }
 
-void APlayer_Character::DrawTrajectory()
-{
-    if(drawingTrajectory)
-    {
-        for(int i = 0; i< 1; i++)
-        {
-            u = forwardVector;
-            t = i*0.2;
-            this->GetLocation();
-            LineTraceSingleByChannel();
-        }
-        FTimerHandle TimerHandle;
-        GetWorld()->GetTimerManager().SetTimer(TimerHandle, [&]()
-        {
-            UE_LOG(LogTemp, Warning, TEXT("Three second delay"))
-        }, 3, false);
-        DrawTrajectory();
-    }
-}
-
-FVector APlayer_Character::GetLocation()
-{
-    gravity = CharacterMovement->GetGravityZ();
-    tt = t*t;
-    
-    location = (u*t)+(0, 0 ,(0.5 * tt * gravity), myCharacter);
-    
-    return(location);
-};
