@@ -63,3 +63,8 @@ void ACatAI::MoveToWaypoints()
         }
     }
 }
+
+void ACatAI::DestroyMe()
+{
+    Destroy();
+}

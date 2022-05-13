@@ -28,6 +28,8 @@ public:
 
     void MoveToWaypoints();
     
+    void DestroyMe();
+    
     UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"))
     int CurrentWaypoint;
     

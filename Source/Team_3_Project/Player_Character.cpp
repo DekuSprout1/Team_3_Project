@@ -5,6 +5,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Engine/World.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Components/BoxComponent.h"
 #include "DrawDebugHelpers.h"
 
 
