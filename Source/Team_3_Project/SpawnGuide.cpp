@@ -35,9 +35,20 @@ void ASpawnGuide::Tick(float DeltaTime)
 
 void ASpawnGuide::SpawnActor()
 {
-    FVector SpawnLocation = GetActorLocation();
-    FRotator SpawnRotation = GetActorRotation();
-    GetWorld()->SpawnActor<ACatAI>(SpawnLocation,SpawnRotation);
+    if(ToSpawn)
+    {
+        UWorld* world = GetWorld();
+        if(world)
+        {
+            FActorSpawnParameters spawnParams;
+            spawnParams.Owner = this;
+            
+            FRotator rotator;
+            
+            FVector spawnLocation = FVector(1515, -2271, -955);
+            world->SpawnActor<ACatAI>(ToSpawn, spawnLocation, rotator, spawnParams);
+        }
+    }
 }
 
 void ASpawnGuide::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,

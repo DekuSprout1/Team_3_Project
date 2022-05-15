@@ -16,7 +16,10 @@ public:
 	// Sets default values for this actor's properties
 	ASpawnGuide();
     
-    UFUNCTION()
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    TSubclassOf<class ACatAI> ToSpawn;
+    
+    UFUNCTION(BlueprintCallable)
        void SpawnActor();
 
 protected:
