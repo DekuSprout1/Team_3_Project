@@ -37,7 +37,7 @@ void ACatDestrot::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* Ot
         if (Char)
         {
                 UE_LOG(LogTemp, Warning, TEXT("Next waypoint ++"));
-                Destroy(Char);
+                Char->Destroy();
         }
     }
 };
